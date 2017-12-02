@@ -3,7 +3,7 @@
 
 module Day02 where
 
-import Data.List (permutations, tails)
+import Data.List (tails)
 import Data.Maybe (mapMaybe)
 
 parseInput :: String -> [[Int]]
