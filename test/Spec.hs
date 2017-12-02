@@ -3,12 +3,15 @@ import Test.Tasty
 import Test.Tasty.HUnit
 
 import qualified Day01 as D01
+import qualified Day02 as D02
 
 main :: IO ()
 main = defaultMain tests
 
 
-tests = testGroup "Tests" [day01]
+tests = testGroup "Tests" [ day01
+                          , day02
+                          ]
 
 
 day01 = testGroup "Day01" [part1,part2,stars]
@@ -23,4 +26,11 @@ day01 = testGroup "Day01" [part1,part2,stars]
                               , testCase "Part2" $ D01.run2 D01.input @?= 1024
                               ]
 
-
+day02 = testGroup "Day02" [part1, part2]
+  where
+    part1 = testCase "Part1" $ do
+      i <- D02.parseInput <$> readFile "inputs/day02.txt"
+      D02.run1 i @?= 30994
+    part2 = testCase "Part2" $ do
+      i <- D02.parseInput <$> readFile "inputs/day02.txt"
+      D02.run2 i @?= 233
