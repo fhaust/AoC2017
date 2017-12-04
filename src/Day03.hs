@@ -5,6 +5,7 @@ import Data.Fixed (mod')
 import Data.List (find)
 
 -- | x or y positions of a discrete spiral
+-- searched "space filling spiral", this came up: http://demonstrations.wolfram.com/DiscreteSpiral
 spiral :: Int -> Int -> Int
 spiral f t = round $ (-1) ** i * (fromIntegral f * (abs (i*i - t') - i) + i*i - t' - mod' i 2) / 2
   where
