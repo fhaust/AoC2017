@@ -7,10 +7,9 @@ import Data.List (find)
 -- | x or y positions of a discrete spiral
 -- searched "space filling spiral", this came up: http://demonstrations.wolfram.com/DiscreteSpiral
 spiral :: Int -> Int -> Int
-spiral f t = round $ (-1) ** i * (fromIntegral f * (abs (i*i - t') - i) + i*i - t' - mod' i 2) / 2
+spiral f t = ((-1) ^ i) * (f * (abs (i*i - t) - i) + i*i - t - i `mod` 2) `div` 2
   where
-    i = fromIntegral $ round (sqrt t')
-    t' = fromIntegral t
+    i = round . sqrt . fromIntegral $ t
 
 -- | 1d index to 2d address
 i2a i = (spiral 1 (i-1), spiral (-1) (i-1))
