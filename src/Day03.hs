@@ -4,6 +4,8 @@ module Day03 where
 import Data.Fixed (mod')
 import Data.List (find)
 
+import qualified Data.IntMap.Lazy as M
+
 -- | x or y positions of a discrete spiral
 -- searched "space filling spiral", this came up: http://demonstrations.wolfram.com/DiscreteSpiral
 spiral :: Int -> Int -> Int
@@ -25,16 +27,15 @@ a2i a = case lookup a a2iMap of (Just i) -> i
 a2iMap = [ (i2a n, n) | n <- [1..] ]
 
 -- | value of 1d index as per the rules
-values :: [Int]
-values = cache
+value :: Int -> Int
+value = (map go [0..] !!)
   where
+    go 0 = 0
     go 1 = 1
-    go i = sum [ cache !! i' | let (x,y) = i2a i, ox <- [-1,0,1], oy <- [-1,0,1], let i' = a2i (ox+x,oy+y), i' < i]
-    cache = [ go i | i <- [0..] ]
-
+    go i = sum [ value i' | let (x,y) = i2a i, ox <- [-1,0,1], oy <- [-1,0,1], let i' = a2i (ox+x,oy+y), i' < i]
 
 -- | first element with value over i
-run2 i = find (> i) values
+run2 i = find (> i) (map value [0..])
 
 
 
