@@ -6,6 +6,7 @@ import qualified Day01 as D01
 import qualified Day02 as D02
 import qualified Day03 as D03
 import qualified Day04 as D04
+import qualified Day05 as D05
 
 main :: IO ()
 main = defaultMain tests
@@ -15,6 +16,7 @@ tests = testGroup "Tests" [ day01
                           , day02
                           , day03
                           , day04
+                          , day05
                           ]
 
 
@@ -53,4 +55,13 @@ day04 = testGroup "Day04" [part1, part2]
     part2 = testCase "Part2" $ do
       i <- D04.parseInput <$> readFile "inputs/day04.txt"
       D04.run2 i @?= 265
+
+day05 = testGroup "Day05" [part1, part2]
+  where
+    part1 = testCase "Part1" $ do
+      i <- D05.parseInput <$> readFile "inputs/day05.txt"
+      D05.run1 i @?= Just 374269
+    part2 = testCase "Part2" $ do
+      i <- D05.parseInput <$> readFile "inputs/day05.txt"
+      D05.run2 i @?= Just 27720699
 
