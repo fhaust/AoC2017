@@ -60,8 +60,8 @@ day05 = testGroup "Day05" [part1, part2]
   where
     part1 = testCase "Part1" $ do
       i <- D05.parseInput <$> readFile "inputs/day05.txt"
-      D05.run1 i @?= Just 374269
+      D05.run D05.rule1 i @?= Just 374269
     part2 = testCase "Part2" $ do
       i <- D05.parseInput <$> readFile "inputs/day05.txt"
-      D05.run2 i @?= Just 27720699
+      D05.run D05.rule2 i @?= Just 27720699
 

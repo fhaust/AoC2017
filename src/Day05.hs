@@ -1,19 +1,11 @@
-
-
 module Day05 where
 
-import Data.List
-import Debug.Trace
-
 type Machine = ([Int], [Int])
-
 
 parseInput :: String -> [Int]
 parseInput = map read . lines
 
-escaped (ls,x:rs) | x >= 0 = x > length rs
-                  | x <  0 = abs x > length ls
-
+-- | move machine a given amount of steps forward or backward
 move :: Int -> Machine -> Maybe Machine
 move = go
   where
@@ -22,16 +14,13 @@ move = go
                  | n <  0 && not (null ls) = go (n+1) (tail ls, head ls : rs)
                  | otherwise               = Nothing
 
-rule1' (ls,r:rs) = move r (ls,(r+1):rs)
+-- | rule 1: increase current position by one
+rule1 (ls,r:rs) = move r (ls,(r+1):rs)
 
-run1 = run rule1'
+-- | rule 2: incrase current position based on value
+rule2 (ls,r:rs) = move r (ls,(if r >= 3 then (r-1) else (r+1)):rs)
 
-
-rule2' (ls,r:rs) = move r (ls,(if r >= 3 then (r-1) else (r+1)):rs)
-
-run2 = run rule2'
-
--- | run with given rule
+-- | run machine with given rule
 run rule i = Just . length $ go ([],i)
   where
     go (_,[]) = []
