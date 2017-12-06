@@ -24,9 +24,9 @@ step l = zipWith (\i x -> x + q + extra i) [0..] l
     (q,r)   = mv `divMod` len
 
     -- does this element need special attention?
-    extra i | i == mi           = - mv   -- drop the maximum value
-            | i' <= r && i' > 0 = 1      -- add leftovers
-            | otherwise         = 0
+    extra i | i == mi   = - mv   -- drop the maximum value
+            | i' <= r   = 1      -- add leftovers
+            | otherwise = 0
       where
         -- index relative to maximum
         i' = (i - mi) `mod` len
