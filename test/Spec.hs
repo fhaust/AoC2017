@@ -7,6 +7,7 @@ import qualified Day02 as D02
 import qualified Day03 as D03
 import qualified Day04 as D04
 import qualified Day05 as D05
+import qualified Day06 as D06
 
 main :: IO ()
 main = defaultMain tests
@@ -17,6 +18,7 @@ tests = testGroup "Tests" [ day01
                           , day03
                           , day04
                           , day05
+                          , day06
                           ]
 
 
@@ -65,3 +67,4 @@ day05 = testGroup "Day05" [part1, part2]
       i <- D05.parseInput <$> readFile "inputs/day05.txt"
       D05.run D05.rule2 i @?= Just 27720699
 
+day06 = testCase "Day06" $ D06.run @?= (5042,1086)
