@@ -8,6 +8,7 @@ import qualified Day03 as D03
 import qualified Day04 as D04
 import qualified Day05 as D05
 import qualified Day06 as D06
+import qualified Day10 as D10
 import qualified Day11 as D11
 
 main :: IO ()
@@ -20,6 +21,7 @@ tests = testGroup "Tests" [ day01
                           , day04
                           , day05
                           , day06
+                          , day10
                           , day11
                           ]
 
@@ -70,6 +72,11 @@ day05 = testGroup "Day05" [part1, part2]
       D05.run D05.rule2 i @?= Just 27720699
 
 day06 = testCase "Day06" $ D06.run @?= (5042,1086)
+
+day10 = testGroup "Day10" [part1,part2]
+  where
+    part1 = testCase "Part1" $ D10.run1 @?= 23715
+    part2 = testCase "Part2" $ D10.run2 @?= "541dc3180fd4b72881e39cf925a50253"
 
 day11 = testCase "Day11" $ do
     i <- D11.parseInput <$> readFile "inputs/day11.txt"
