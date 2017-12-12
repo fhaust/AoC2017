@@ -10,6 +10,7 @@ import qualified Day05 as D05
 import qualified Day06 as D06
 import qualified Day10 as D10
 import qualified Day11 as D11
+import qualified Day12 as D12
 
 main :: IO ()
 main = defaultMain tests
@@ -23,6 +24,7 @@ tests = testGroup "Tests" [ day01
                           , day06
                           , day10
                           , day11
+                          , day12
                           ]
 
 
@@ -81,3 +83,7 @@ day10 = testGroup "Day10" [part1,part2]
 day11 = testCase "Day11" $ do
     i <- D11.parseInput <$> readFile "inputs/day11.txt"
     D11.run i @?= (720,1485)
+
+day12 = testCase "Day12" $ do
+    (i,_,_) <- D12.parseInput <$> readFile "inputs/day12.txt"
+    D12.run i @?= (205,200)
