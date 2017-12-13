@@ -8,9 +8,11 @@ import qualified Day03 as D03
 import qualified Day04 as D04
 import qualified Day05 as D05
 import qualified Day06 as D06
+import qualified Day09 as D09
 import qualified Day10 as D10
 import qualified Day11 as D11
 import qualified Day12 as D12
+import qualified Day13 as D13
 
 main :: IO ()
 main = defaultMain tests
@@ -22,9 +24,11 @@ tests = testGroup "Tests" [ day01
                           , day04
                           , day05
                           , day06
+                          , day09
                           , day10
                           , day11
                           , day12
+                          , day13
                           ]
 
 
@@ -75,6 +79,10 @@ day05 = testGroup "Day05" [part1, part2]
 
 day06 = testCase "Day06" $ D06.run @?= (5042,1086)
 
+day09 = testCase "Day09" $ do
+  i <- readFile "inputs/day09.txt"
+  D09.run i @?= (13154,6369)
+
 day10 = testGroup "Day10" [part1,part2]
   where
     part1 = testCase "Part1" $ D10.run1 @?= 23715
@@ -87,3 +95,12 @@ day11 = testCase "Day11" $ do
 day12 = testCase "Day12" $ do
     (i,_,_) <- D12.parseInput <$> readFile "inputs/day12.txt"
     D12.run i @?= (205,200)
+
+day13 = testGroup "Day13" [part1, part2]
+  where
+    part1 = testCase "Part1" $ do
+      i <- D13.parseInput <$> readFile "inputs/day13.txt"
+      D13.run1 i @?= 648
+    part2 = testCase "Part2" $ do
+      i <- D13.parseInput <$> readFile "inputs/day13.txt"
+      D13.run2 i @?= Just 3933124
